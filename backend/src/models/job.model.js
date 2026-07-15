@@ -133,16 +133,16 @@ jobSchema.index({
   skills: "text",
 });
 
-jobSchema.pre("save", function (next) {
+jobSchema.pre("save", function () {
   this.titleNormalized = this.title?.trim().toLowerCase();
   this.companyNormalized = this.company?.trim().toLowerCase();
   this.locationNormalized = this.location?.trim().toLowerCase();
 
-  this.skillsNormalized = this.skills.map(skill =>
-    skill.trim().toLowerCase()
-  );
-
-  next();
+  if (Array.isArray(this.skills)) {
+    this.skillsNormalized = this.skills
+      .map(skill => (typeof skill === "string" ? skill.trim().toLowerCase() : ""))
+      .filter(Boolean);
+  }
 });
 
 export const Job = mongoose.model("Job", jobSchema);

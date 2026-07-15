@@ -39,7 +39,7 @@ function ResumeUploader({
         {/* Resume PDF Upload */}
         <div className="space-y-2">
           <label className="text-[10px] uppercase font-bold tracking-widest text-slate-400">
-            Upload Resume (PDF)
+            Upload Resume (PDF/XML)
           </label>
           {!file ? (
             <div
@@ -49,25 +49,31 @@ function ResumeUploader({
               onDrop={(e) => {
                 e.preventDefault();
                 const droppedFile = e.dataTransfer.files[0];
-                if (droppedFile && droppedFile.type === "application/pdf") {
-                  onFileChange(droppedFile);
-                } else {
-                  toast.error("Only PDF files are supported.");
+                if (droppedFile) {
+                  const isPdf = droppedFile.type === "application/pdf" || droppedFile.name.endsWith(".pdf");
+                  const isXml = droppedFile.type === "application/xml" || droppedFile.type === "text/xml" || droppedFile.name.endsWith(".xml");
+                  if (isPdf || isXml) {
+                    onFileChange(droppedFile);
+                  } else {
+                    toast.error("Only PDF and XML files are supported.");
+                  }
                 }
               }}
             >
               <input
                 id="resume-file-input"
                 type="file"
-                accept=".pdf"
+                accept=".pdf,.xml"
                 className="hidden"
                 onChange={(e) => {
                   const selectedFile = e.target.files[0];
                   if (selectedFile) {
-                    if (selectedFile.type === "application/pdf") {
+                    const isPdf = selectedFile.type === "application/pdf" || selectedFile.name.endsWith(".pdf");
+                    const isXml = selectedFile.type === "application/xml" || selectedFile.type === "text/xml" || selectedFile.name.endsWith(".xml");
+                    if (isPdf || isXml) {
                       onFileChange(selectedFile);
                     } else {
-                      toast.error("Only PDF files are supported.");
+                      toast.error("Only PDF and XML files are supported.");
                     }
                   }
                 }}
@@ -75,7 +81,7 @@ function ResumeUploader({
               <div className="flex flex-col items-center justify-center space-y-1">
                 <FiUploadCloud className="text-slate-400 w-8 h-8" />
                 <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-                  Drag & drop PDF here, or <span className="text-indigo-500">browse</span>
+                  Drag & drop PDF/XML here, or <span className="text-indigo-500">browse</span>
                 </span>
                 <span className="text-[10px] text-slate-400">Max size 5MB</span>
               </div>
