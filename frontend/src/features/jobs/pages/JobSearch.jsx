@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGetJobsQuery } from "../api/jobs.api.js";
 import SearchFilters from "../components/SearchFilters.jsx";
 import JobList from "../components/JobList.jsx";
@@ -39,6 +39,61 @@ function JobSearch() {
     page: 1,
     limit: 8,
   });
+
+  // Debounce text inputs (search, company, location, experience, salaryMin, salaryMax)
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setQueryParams((prev) => {
+        if (
+          prev.search === search &&
+          prev.company === company &&
+          prev.location === location &&
+          prev.experience === experience &&
+          prev.salaryMin === salaryMin &&
+          prev.salaryMax === salaryMax
+        ) {
+          return prev;
+        }
+        setPage(1);
+        return {
+          ...prev,
+          search,
+          company,
+          location,
+          experience,
+          salaryMin,
+          salaryMax,
+          page: 1,
+        };
+      });
+    }, 450);
+    return () => clearTimeout(handler);
+  }, [search, company, location, experience, salaryMin, salaryMax]);
+
+  // Immediate select inputs (employmentType, remote, isDuplicate, sortBy, sortOrder)
+  useEffect(() => {
+    setQueryParams((prev) => {
+      if (
+        prev.employmentType === employmentType &&
+        prev.remote === remote &&
+        prev.isDuplicate === isDuplicate &&
+        prev.sortBy === sortBy &&
+        prev.sortOrder === sortOrder
+      ) {
+        return prev;
+      }
+      setPage(1);
+      return {
+        ...prev,
+        employmentType,
+        remote,
+        isDuplicate,
+        sortBy,
+        sortOrder,
+        page: 1,
+      };
+    });
+  }, [employmentType, remote, isDuplicate, sortBy, sortOrder]);
 
   const { data: response, isLoading, error, refetch } = useGetJobsQuery(queryParams);
 

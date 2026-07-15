@@ -29,6 +29,22 @@ function ResumeTailor() {
     }
   }, [queryJobId]);
 
+  useEffect(() => {
+    if (!isTailoring) return;
+
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      const msg = "Current work will stop and you will have to do it again. Are you sure you want to refresh?";
+      e.returnValue = msg;
+      return msg;
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [isTailoring]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedJobId) {

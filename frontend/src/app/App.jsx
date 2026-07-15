@@ -7,16 +7,18 @@ import useAuth from "../features/auth/hooks/useAuth.js";
 import Loader from "../shared/components/Loader.jsx";
 
 function App() {
-  const { data } = useGetUserQuery();
+  const { data, isLoading } = useGetUserQuery();
   const { handleSetUser } = useAuth();
 
   useEffect(() => {
+    if (isLoading) return;
+    
     if (data) {
       handleSetUser(data.data);
     } else {
       handleSetUser(null);
     }
-  }, [data]);
+  }, [data, isLoading]);
 
   return (
     <div className="h-screen w-full overflow-hidden">
