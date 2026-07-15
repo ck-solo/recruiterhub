@@ -181,7 +181,7 @@ function JobDetails() {
               </p>
             </div>
             <Link
-              to={`/tailor?jobId=${job._id}`}
+              to={`/resume?jobId=${job._id}`}
               className="w-full flex items-center justify-center gap-2 py-3 bg-white hover:bg-slate-50 text-indigo-700 font-black rounded-xl text-sm transition shadow-md active:scale-95"
             >
               Tailor Resume

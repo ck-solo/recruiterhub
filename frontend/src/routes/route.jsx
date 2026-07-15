@@ -1,17 +1,19 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Login from "../features/auth/pages/Login.jsx";
-import Register from "../features/auth/pages/Register.jsx";
 import { ProtectedRoute } from "./ProtectedRoute.jsx";
 import { PublicRoute } from "./PublicRoute.jsx";
 import App from "../app/App.jsx";
-import DashboardLayout from "../features/auth/pages/DashboardLayout.jsx";
-import Dashboard from "../features/jobs/pages/Dashboard.jsx";
-import JobSearch from "../features/jobs/pages/JobSearch.jsx";
-import JobDetails from "../features/jobs/pages/JobDetails.jsx";
-import ExcelImport from "../features/jobs/pages/ExcelImport.jsx";
-import DuplicateResolver from "../features/jobs/pages/DuplicateResolver.jsx";
-import ResumeTailor from "../features/jobs/pages/ResumeTailor.jsx";
+import AppLayout from "../shared/layout/AppLayout.jsx";
 import ErrorRoute from "./ErrorRoute.jsx";
+
+const Login = lazy(() => import("../features/auth/pages/Login.jsx"));
+const Register = lazy(() => import("../features/auth/pages/Register.jsx"));
+const Dashboard = lazy(() => import("../features/dashboard/pages/Dashboard.jsx"));
+const JobSearch = lazy(() => import("../features/jobs/pages/JobSearch.jsx"));
+const JobDetails = lazy(() => import("../features/jobs/pages/JobDetails.jsx"));
+const ExcelImport = lazy(() => import("../features/import/pages/ExcelImport.jsx"));
+const DuplicateResolver = lazy(() => import("../features/duplicates/pages/DuplicateResolver.jsx"));
+const ResumeTailor = lazy(() => import("../features/resume/pages/ResumeTailor.jsx"));
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +37,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <DashboardLayout />,
+            element: <AppLayout />,
             children: [
               {
                 path: "",
@@ -58,7 +60,7 @@ export const router = createBrowserRouter([
                 element: <DuplicateResolver />,
               },
               {
-                path: "tailor",
+                path: "resume",
                 element: <ResumeTailor />,
               },
             ],
