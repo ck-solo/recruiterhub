@@ -15,7 +15,7 @@ function Register() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 transition-colors">
       <div className="glass-card w-full max-w-md p-8 border border-slate-200/50 dark:border-slate-800/50">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400">Register</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-emerald-600 dark:text-emerald-400">Register</h2>
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
@@ -32,7 +32,7 @@ function Register() {
               id="name"
               type="text"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
               placeholder="John Doe"
               name="name"
             />
@@ -45,7 +45,7 @@ function Register() {
               id="email"
               type="email"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
               placeholder="john@company.com"
               name="email"
             />
@@ -58,7 +58,7 @@ function Register() {
               id="password"
               type="password"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
               placeholder="•••••••• (Min 6 chars)"
               name="password"
             />
@@ -67,14 +67,14 @@ function Register() {
           <button
             type="submit"
             disabled={isRegisterLoading}
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-lg shadow-indigo-600/20 active:scale-95 disabled:opacity-50 mt-4"
+            className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition shadow-lg shadow-emerald-600/20 active:scale-95 disabled:opacity-50 mt-4"
           >
             {isRegisterLoading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
         <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
           Already have an account?{" "}
-          <Link to="/login" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+          <Link to="/login" className="text-emerald-600 dark:text-emerald-400 hover:underline">
             Sign In here
           </Link>
         </div>

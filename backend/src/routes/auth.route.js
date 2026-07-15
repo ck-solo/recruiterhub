@@ -15,5 +15,7 @@ router.post("/register", validator(signupSchema),  authController.register);
 router.post("/login", authController.login);
 router.get("/user", userAuth, authController.getUser);
 router.post("/logout", userAuth, authController.logout);
+router.patch("/reset-password", userAuth, authController.resetPassword);
+router.patch("/new-password", userAuth, authController.setNewPassword);
 
 export default router;

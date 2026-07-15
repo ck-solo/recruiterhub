@@ -43,7 +43,7 @@ function SearchFilters({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Title, skills, keyword..."
-              className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             />
           </div>
         </div>
@@ -57,7 +57,7 @@ function SearchFilters({
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="Google, Microsoft..."
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           />
         </div>
 
@@ -70,7 +70,7 @@ function SearchFilters({
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="New York, Remote..."
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           />
         </div>
 
@@ -81,7 +81,7 @@ function SearchFilters({
             id="job-type-filter"
             value={employmentType}
             onChange={(e) => setEmploymentType(e.target.value)}
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           >
             <option value="">All Types</option>
             <option value="Full-time">Full-time</option>
@@ -102,7 +102,7 @@ function SearchFilters({
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
             placeholder="e.g. 3"
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           />
         </div>
 
@@ -116,7 +116,7 @@ function SearchFilters({
               value={salaryMin}
               onChange={(e) => setSalaryMin(e.target.value)}
               placeholder="Min"
-              className="w-1/2 px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-1/2 px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             />
             <span className="text-slate-400 text-xs">-</span>
             <input
@@ -125,7 +125,7 @@ function SearchFilters({
               onChange={(e) => setSalaryMax(e.target.value)}
               placeholder="Max"
               aria-label="Maximum salary filter"
-              className="w-1/2 px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-1/2 px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             />
           </div>
         </div>
@@ -137,7 +137,7 @@ function SearchFilters({
             id="workplace-filter"
             value={remote}
             onChange={(e) => setRemote(e.target.value)}
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           >
             <option value="">Anywhere</option>
             <option value="true">Remote Only</option>
@@ -152,7 +152,7 @@ function SearchFilters({
             id="duplicates-filter"
             value={isDuplicate}
             onChange={(e) => setIsDuplicate(e.target.value)}
-            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
           >
             <option value="">Show All</option>
             <option value="false">Unique Jobs Only</option>
@@ -168,7 +168,7 @@ function SearchFilters({
               id="sort-by-filter"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-2/3 px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-2/3 px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             >
               <option value="postedDate">Date Posted</option>
               <option value="salaryMin">Salary Min</option>
@@ -180,7 +180,7 @@ function SearchFilters({
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
               aria-label="Sort order"
-              className="w-1/3 px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+              className="w-1/3 px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             >
               <option value="desc">Desc</option>
               <option value="asc">Asc</option>
@@ -191,7 +191,7 @@ function SearchFilters({
         <div className="flex gap-2 pt-2">
           <button
             type="submit"
-            className="w-1/2 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs transition active:scale-95 shadow-sm"
+            className="w-1/2 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs transition active:scale-95 shadow-sm"
           >
             Apply
           </button>

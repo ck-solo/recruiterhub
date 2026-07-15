@@ -22,7 +22,7 @@ function DashboardCharts({
       {/* Employment Type Distribution */}
       <div className="glass-card bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 p-6 rounded-2xl space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
-          <FiBriefcase className="text-indigo-500" size={18} />
+          <FiBriefcase className="text-emerald-500" size={18} />
           <h3 className="font-bold text-slate-800 dark:text-white text-base">Employment Types</h3>
         </div>
         
@@ -42,7 +42,7 @@ function DashboardCharts({
                   </div>
                   <div className="w-full bg-slate-100 dark:bg-slate-950 rounded-full h-2 overflow-hidden">
                     <div
-                      className="bg-indigo-500 h-full rounded-full transition-all duration-500"
+                      className="bg-emerald-500 h-full rounded-full transition-all duration-500"
                       style={{ width: `${percentage}%` }}
                     ></div>
                   </div>
@@ -148,7 +148,7 @@ function DashboardCharts({
                 className="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800/60 space-y-2"
               >
                 <div className="flex justify-between items-center text-xs font-bold text-slate-700 dark:text-slate-350">
-                  <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 rounded">
+                  <span className="px-2 py-0.5 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded">
                     Currency: {range._id || "Not Specified"}
                   </span>
                   <span className="text-slate-400">{range.count} Jobs listed</span>
@@ -176,7 +176,7 @@ function DashboardCharts({
                 {/* Range graphic */}
                 <div className="pt-1.5 space-y-1">
                   <div className="w-full bg-slate-200 dark:bg-slate-900 rounded-full h-1.5 relative">
-                    <div className="bg-indigo-500 h-full rounded-full absolute left-1/4 right-1/4"></div>
+                    <div className="bg-emerald-500 h-full rounded-full absolute left-1/4 right-1/4"></div>
                   </div>
                   <div className="flex justify-between text-[9px] text-slate-400 font-bold">
                     <span>Min: {range.minSalary?.toLocaleString()}</span>

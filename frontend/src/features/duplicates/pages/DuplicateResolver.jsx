@@ -119,7 +119,7 @@ function DuplicateResolver() {
                         onClick={() => setSelectedDupIndex(idx)}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 border transition ${
                           selectedDupIndex === idx
-                            ? "bg-indigo-600 text-white border-transparent"
+                            ? "bg-emerald-600 text-white border-transparent"
                             : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500"
                         }`}
                       >
@@ -152,7 +152,7 @@ function DuplicateResolver() {
                 {activeGroup.duplicates[selectedDupIndex] && (
                   <div className="glass-card bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0 shadow-md">
                     <div className="flex items-center gap-2.5 text-slate-500 text-xs">
-                      <FiInfo size={16} className="text-indigo-500 shrink-0" />
+                      <FiInfo size={16} className="text-emerald-500 shrink-0" />
                       <p>
                         Confirm duplicate status to retain current grouping, or split this record out as a unique posting.
                       </p>
@@ -161,7 +161,7 @@ function DuplicateResolver() {
                       <button
                         onClick={() => handleResolveUnique(activeGroup.duplicates[selectedDupIndex]._id)}
                         disabled={isResolving}
-                        className="flex-1 sm:flex-none px-5 py-2.5 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 text-indigo-600 dark:text-indigo-400 text-xs font-bold rounded-xl transition active:scale-95 disabled:opacity-50"
+                        className="flex-1 sm:flex-none px-5 py-2.5 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded-xl transition active:scale-95 disabled:opacity-50"
                       >
                         Split (Mark Unique)
                       </button>

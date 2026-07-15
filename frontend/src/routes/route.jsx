@@ -14,6 +14,7 @@ const JobDetails = lazy(() => import("../features/jobs/pages/JobDetails.jsx"));
 const ExcelImport = lazy(() => import("../features/import/pages/ExcelImport.jsx"));
 const DuplicateResolver = lazy(() => import("../features/duplicates/pages/DuplicateResolver.jsx"));
 const ResumeTailor = lazy(() => import("../features/resume/pages/ResumeTailor.jsx"));
+const Profile = lazy(() => import("../features/profile/pages/Profile.jsx"));
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
               {
                 path: "resume",
                 element: <ResumeTailor />,
+              },
+              {
+                path: "profile",
+                element: <Profile />,
               },
             ],
           },

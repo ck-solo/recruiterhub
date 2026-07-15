@@ -14,7 +14,7 @@ function DuplicateTable({ duplicateGroups, selectedGroupId, onSelectGroup }) {
               key={group._id}
               onClick={() => onSelectGroup(group._id)}
               className={`w-full text-left p-4 hover:bg-slate-50 dark:hover:bg-slate-950/40 transition-colors flex justify-between items-start gap-2 ${
-                isSelected ? "bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-600" : ""
+                isSelected ? "bg-emerald-50/50 dark:bg-emerald-950/20 border-l-4 border-emerald-600" : ""
               }`}
             >
               <div className="min-w-0">

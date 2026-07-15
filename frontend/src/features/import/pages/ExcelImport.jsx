@@ -99,7 +99,7 @@ function ExcelImport() {
                 {history.map((item) => (
                   <div key={item.id} className="py-4 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
                     <div className="flex items-start space-x-3 overflow-hidden">
-                      <div className="p-2 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-lg shrink-0">
+                      <div className="p-2 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 rounded-lg shrink-0">
                         <FiDatabase size={20} />
                       </div>
                       <div className="text-left overflow-hidden min-w-0">
@@ -150,35 +150,35 @@ function ExcelImport() {
             <h4 className="font-bold text-slate-400 uppercase tracking-widest text-[9px]">Recognized Column Headers</h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Title</span> 
+                <span className="font-bold text-emerald-500 font-mono">Title</span> 
                 <span className="text-[11px] text-slate-400"> (Required: title, jobTitle, Title)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Company</span> 
+                <span className="font-bold text-emerald-500 font-mono">Company</span> 
                 <span className="text-[11px] text-slate-400"> (Required: company, companyName, Company)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Location</span> 
+                <span className="font-bold text-emerald-500 font-mono">Location</span> 
                 <span className="text-[11px] text-slate-400"> (e.g. Remote, City - extracts remote status)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Description</span> 
+                <span className="font-bold text-emerald-500 font-mono">Description</span> 
                 <span className="text-[11px] text-slate-400"> (Supports raw text, used in similarity scores)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Salary</span> 
+                <span className="font-bold text-emerald-500 font-mono">Salary</span> 
                 <span className="text-[11px] text-slate-400"> (e.g. $80K - $120K, £60,000, 1500000 INR)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Experience</span> 
+                <span className="font-bold text-emerald-500 font-mono">Experience</span> 
                 <span className="text-[11px] text-slate-400"> (e.g. 3+ years, 5-8 yrs, Entry level)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">Skills</span> 
+                <span className="font-bold text-emerald-500 font-mono">Skills</span> 
                 <span className="text-[11px] text-slate-400"> (Comma-separated list e.g. React, Node, SQL)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold text-indigo-500 font-mono">PostedDate</span> 
+                <span className="font-bold text-emerald-500 font-mono">PostedDate</span> 
                 <span className="text-[11px] text-slate-400"> (Date format or "3 days ago")</span>
               </li>
             </ul>

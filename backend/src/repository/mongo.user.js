@@ -21,6 +21,10 @@ class MongoUserRepository {
         return await User.findById(id);
     }
 
+    async findUserByIdWithPassword(id) {
+        return await User.findById(id).select("+password");
+    }
+
     async updateUser(userId, updates) {
         return await User.findByIdAndUpdate(userId, updates, { new: true });
     }

@@ -5,14 +5,14 @@ function StatsCards({ stats, isLoading }) {
     {
       label: "Total Jobs",
       value: stats?.totalJobs,
-      icon: <FiBriefcase className="text-indigo-500" size={20} />,
-      colorClass: "border-indigo-200 dark:border-indigo-950/40 bg-indigo-500/[0.01]",
+      icon: <FiBriefcase className="text-emerald-500" size={20} />,
+      colorClass: "border-emerald-200 dark:border-emerald-950/40 bg-emerald-500/[0.01]",
     },
     {
       label: "Total Companies",
       value: stats?.totalCompanies,
-      icon: <FiGrid className="text-emerald-500" size={20} />,
-      colorClass: "border-emerald-200 dark:border-emerald-950/40 bg-emerald-500/[0.01]",
+      icon: <FiGrid className="text-teal-500" size={20} />,
+      colorClass: "border-teal-200 dark:border-teal-950/40 bg-teal-500/[0.01]",
     },
     {
       label: "Duplicate Jobs",

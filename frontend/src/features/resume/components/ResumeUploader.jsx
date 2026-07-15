@@ -14,7 +14,7 @@ function ResumeUploader({
   return (
     <div className="glass-card bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 p-6 rounded-2xl shadow-sm h-fit">
       <h3 className="font-bold text-slate-800 dark:text-white text-base mb-4 flex items-center gap-2">
-        <FiEdit2 className="text-indigo-500" /> Input Parameters
+        <FiEdit2 className="text-emerald-500" /> Input Parameters
       </h3>
 
       <form onSubmit={onAnalyze} className="space-y-5">
@@ -25,7 +25,7 @@ function ResumeUploader({
             value={selectedJobId}
             onChange={(e) => setSelectedJobId(e.target.value)}
             disabled={jobsLoading}
-            className="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none disabled:opacity-50"
+            className="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none disabled:opacity-50"
           >
             <option value="">-- Select a Job listing --</option>
             {jobsList.map((job) => (
@@ -43,7 +43,7 @@ function ResumeUploader({
           </label>
           {!file ? (
             <div
-              className="border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-500 transition-colors bg-slate-50/50 dark:bg-slate-950/20"
+              className="border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center cursor-pointer hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors bg-slate-50/50 dark:bg-slate-950/20"
               onClick={() => document.getElementById("resume-file-input").click()}
               onDragOver={(e) => e.preventDefault()}
               onDrop={(e) => {
@@ -81,7 +81,7 @@ function ResumeUploader({
               <div className="flex flex-col items-center justify-center space-y-1">
                 <FiUploadCloud className="text-slate-400 w-8 h-8" />
                 <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-                  Drag & drop PDF/XML here, or <span className="text-indigo-500">browse</span>
+                  Drag & drop PDF/XML here, or <span className="text-emerald-500">browse</span>
                 </span>
                 <span className="text-[10px] text-slate-400">Max size 5MB</span>
               </div>
@@ -89,7 +89,7 @@ function ResumeUploader({
           ) : (
             <div className="flex items-center justify-between p-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950">
               <div className="flex items-center space-x-2.5 overflow-hidden w-[80%]">
-                <FiFileText className="text-indigo-500 w-5 h-5 shrink-0" />
+                <FiFileText className="text-emerald-500 w-5 h-5 shrink-0" />
                 <div className="text-left overflow-hidden">
                   <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">
                     {file.name}
@@ -115,7 +115,7 @@ function ResumeUploader({
         <button
           type="submit"
           disabled={loading || !selectedJobId || !file}
-          className="w-full flex justify-center items-center gap-2 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition active:scale-95 disabled:opacity-50 disabled:active:scale-100 shadow-md shadow-indigo-600/10"
+          className="w-full flex justify-center items-center gap-2 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition active:scale-95 disabled:opacity-50 disabled:active:scale-100 shadow-md shadow-emerald-600/10"
         >
           {loading ? (
             <>

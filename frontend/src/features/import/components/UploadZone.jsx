@@ -39,7 +39,7 @@ function UploadZone({ file, onFileChange, onSubmit, loading }) {
               document.getElementById("file-input").click();
             }
           }}
-          className="border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-2xl p-8 md:p-12 text-center cursor-pointer transition bg-slate-50/50 dark:bg-slate-950/20 group outline-none"
+          className="border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-emerald-500 dark:hover:border-emerald-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 rounded-2xl p-8 md:p-12 text-center cursor-pointer transition bg-slate-50/50 dark:bg-slate-950/20 group outline-none"
           onClick={() => document.getElementById("file-input").click()}
         >
           <input
@@ -62,12 +62,12 @@ function UploadZone({ file, onFileChange, onSubmit, loading }) {
             }}
           />
           <div className="flex flex-col items-center space-y-4">
-            <div className="p-4 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-full group-hover:scale-110 transition-transform">
+            <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 rounded-full group-hover:scale-110 transition-transform">
               <FiUploadCloud size={32} />
             </div>
             <div>
               <p className="text-sm font-bold text-slate-700 dark:text-slate-200">
-                Drag & drop your Excel file here, or <span className="text-indigo-600 dark:text-indigo-400">browse</span>
+                Drag & drop your Excel file here, or <span className="text-emerald-600 dark:text-emerald-400">browse</span>
               </p>
               <p className="text-xs text-slate-400 mt-1">Accepts only standard Excel files (.xlsx) up to 10MB</p>
             </div>
@@ -78,7 +78,7 @@ function UploadZone({ file, onFileChange, onSubmit, loading }) {
         {file && (
           <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="p-2.5 bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-lg shrink-0">
+              <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-lg shrink-0">
                 <FiFile size={20} />
               </div>
               <div className="min-w-0">
@@ -103,7 +103,7 @@ function UploadZone({ file, onFileChange, onSubmit, loading }) {
         <button
           type="submit"
           disabled={!file || loading}
-          className="w-full flex justify-center items-center gap-2 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition active:scale-95 disabled:opacity-50 disabled:active:scale-100 shadow-md shadow-indigo-600/10"
+          className="w-full flex justify-center items-center gap-2 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition active:scale-95 disabled:opacity-50 disabled:active:scale-100 shadow-md shadow-emerald-600/10"
         >
           {loading ? (
             <>

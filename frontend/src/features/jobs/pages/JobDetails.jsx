@@ -9,7 +9,7 @@ function JobDetails() {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
         <p className="text-slate-500 dark:text-slate-400 font-medium">Retrieving job specification details...</p>
       </div>
     );
@@ -24,7 +24,7 @@ function JobDetails() {
         </p>
         <Link 
           to="/jobs"
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition"
+          className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition"
         >
           Return to Database
         </Link>
@@ -38,7 +38,7 @@ function JobDetails() {
     <div className="space-y-6 animate-fadeIn">
       {/* Back button */}
       <div>
-        <Link to="/jobs" className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm font-semibold transition">
+        <Link to="/jobs" className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 text-sm font-semibold transition">
           <FiArrowLeft /> Back to Job Database
         </Link>
       </div>
@@ -121,7 +121,7 @@ function JobDetails() {
           {job.skills.length > 0 && (
             <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-850">
               <h3 className="font-bold text-slate-800 dark:text-white text-base flex items-center gap-2">
-                <FiTag className="text-indigo-500" />
+                <FiTag className="text-emerald-500" />
                 Required Skills
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -158,7 +158,7 @@ function JobDetails() {
                   href={job.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline flex items-center gap-1.5"
+                  className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1.5"
                 >
                   Visit Job Source <FiExternalLink size={12} />
                 </a>
@@ -170,19 +170,19 @@ function JobDetails() {
         {/* Sidebar details (Resume tailoring quick launcher & Duplicate Info) */}
         <div className="space-y-6">
           {/* Resume tailoring agent widget */}
-          <div className="glass-card bg-indigo-600 dark:bg-indigo-950 p-6 rounded-2xl text-white space-y-4 shadow-lg shadow-indigo-600/10">
+          <div className="glass-card bg-emerald-600 dark:bg-emerald-950 p-6 rounded-2xl text-white space-y-4 shadow-lg shadow-emerald-600/10">
             <div className="p-3 bg-white/10 w-fit rounded-xl">
               <FiCpu size={24} className="text-white" />
             </div>
             <div>
               <h3 className="font-black text-lg">Resume Tailoring Agent</h3>
-              <p className="text-indigo-100 text-xs mt-1.5 leading-relaxed">
+              <p className="text-emerald-100 text-xs mt-1.5 leading-relaxed">
                 Analyze your resume against this job. Get a match score, missing skills list, and improvements in seconds.
               </p>
             </div>
             <Link
               to={`/resume?jobId=${job._id}`}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-white hover:bg-slate-50 text-indigo-700 font-black rounded-xl text-sm transition shadow-md active:scale-95"
+              className="w-full flex items-center justify-center gap-2 py-3 bg-white hover:bg-slate-50 text-emerald-700 font-black rounded-xl text-sm transition shadow-md active:scale-95"
             >
               Tailor Resume
             </Link>
@@ -200,7 +200,7 @@ function JobDetails() {
                 </p>
                 <div className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 rounded-xl">
                   <p className="text-[10px] text-slate-400 font-bold uppercase">Canonical Parent</p>
-                  <Link to={`/jobs/${canonical._id}`} className="text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline block mt-1">
+                  <Link to={`/jobs/${canonical._id}`} className="text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:underline block mt-1">
                     {canonical.title}
                   </Link>
                   <p className="text-xs text-slate-500 mt-0.5">{canonical.company} &bull; {canonical.location}</p>
@@ -226,7 +226,7 @@ function JobDetails() {
                   <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
                     {duplicates.map((dup) => (
                       <div key={dup._id} className="py-2.5 first:pt-0">
-                        <Link to={`/jobs/${dup._id}`} className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline truncate block">
+                        <Link to={`/jobs/${dup._id}`} className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline truncate block">
                           {dup.title}
                         </Link>
                         <p className="text-[10px] text-slate-400 mt-0.5">Location: {dup.location}</p>

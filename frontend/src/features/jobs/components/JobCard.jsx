@@ -16,7 +16,7 @@ function JobCard({ job }) {
           <div className="flex flex-wrap items-center gap-2">
             <Link
               to={`/jobs/${job._id}`}
-              className="text-base font-black text-indigo-600 dark:text-indigo-400 hover:underline"
+              className="text-base font-black text-emerald-600 dark:text-emerald-400 hover:underline"
             >
               {job.title}
             </Link>
@@ -72,7 +72,7 @@ function JobCard({ job }) {
           
           <Link
             to={`/jobs/${job._id}`}
-            className="mt-2 text-xs text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
+            className="mt-2 text-xs text-emerald-600 dark:text-emerald-400 font-bold hover:underline"
           >
             View Details &rarr;
           </Link>

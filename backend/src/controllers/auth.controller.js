@@ -33,6 +33,30 @@ class AuthController {
         res.success(200, "Logged out successfully.");
     });
 
+    resetPassword = asyncHandler(async (req, res) => {
+        const { currentPassword, newPassword } = req.body;
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ success: false, message: "Current password and new password are required." });
+        }
+        if (newPassword.length < 6) {
+            return res.status(400).json({ success: false, message: "New password must be at least 6 characters." });
+        }
+        await authService.resetPassword(req.user.id, currentPassword, newPassword);
+        res.success(200, "Password reset successfully.");
+    });
+
+    setNewPassword = asyncHandler(async (req, res) => {
+        const { newPassword } = req.body;
+        if (!newPassword) {
+            return res.status(400).json({ success: false, message: "New password is required." });
+        }
+        if (newPassword.length < 6) {
+            return res.status(400).json({ success: false, message: "New password must be at least 6 characters." });
+        }
+        await authService.setNewPassword(req.user.id, newPassword);
+        res.success(200, "New password set successfully.");
+    });
+
 }
 
 export default new AuthController();

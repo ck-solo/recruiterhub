@@ -58,6 +58,27 @@ class AuthService {
     async getAllUsers() {
         return await MongoUserRepository.findAllUsers();
     }
+
+    async resetPassword(userId, currentPassword, newPassword) {
+        const user = await MongoUserRepository.findUserByIdWithPassword(userId);
+        if (!user) throw new AppError(404, "User not found");
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) throw new AppError(400, "Current password is incorrect");
+
+        user.password = newPassword;
+        await user.save();
+        return true;
+    }
+
+    async setNewPassword(userId, newPassword) {
+        const user = await MongoUserRepository.findUserByIdWithPassword(userId);
+        if (!user) throw new AppError(404, "User not found");
+
+        user.password = newPassword;
+        await user.save();
+        return true;
+    }
 }
 
 export default new AuthService();

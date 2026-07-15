@@ -26,10 +26,10 @@ function DashboardLayout() {
         {/* Brand Logo */}
         <div className="h-16 flex items-center px-6 border-b border-slate-200/60 dark:border-slate-800/60">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-black bg-gradient-to-r from-indigo-500 to-violet-600 dark:from-indigo-400 dark:to-violet-500 bg-clip-text text-transparent">
-              Applywizz
+            <span className="text-2xl font-black bg-gradient-to-r from-emerald-500 to-teal-600 dark:from-emerald-400 dark:to-teal-500 bg-clip-text text-transparent">
+              HireHub
             </span>
-            <span className="text-[10px] uppercase font-bold tracking-widest bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-100 dark:border-indigo-900/50">
+            <span className="text-[10px] uppercase font-bold tracking-widest bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-100 dark:border-emerald-900/50">
               v1.0
             </span>
           </Link>
@@ -44,7 +44,7 @@ function DashboardLayout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
                   isActive
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/10"
                     : "text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-800 dark:hover:text-slate-100"
                 }`
               }
@@ -58,12 +58,12 @@ function DashboardLayout() {
         {/* Profile Card / Footer */}
         <div className="p-4 border-t border-slate-200/60 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-900/30">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold">
               {user?.name ? user.name[0].toUpperCase() : <FiUser />}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold truncate text-slate-800 dark:text-slate-100">{user?.name || "Recruiter Account"}</p>
-              <p className="text-xs text-slate-400 truncate">{user?.email || "recruiter@applywizz.com"}</p>
+              <p className="text-xs text-slate-400 truncate">{user?.email || "recruiter@HireHub.com"}</p>
             </div>
           </div>
           <button
@@ -82,14 +82,12 @@ function DashboardLayout() {
         <header className="py-4 flex items-center justify-between px-6 border-b border-slate-200/60 dark:border-slate-800/60 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md z-10">
           {/* Mobile Brand */}
           <div className="md:hidden flex items-center gap-2">
-            <span className="text-xl font-black bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">
-              Applywizz
+            <span className="text-xl font-black bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+              HireHub
             </span>
           </div>
 
-          <div className="hidden md:block">
-            <h2 className="text-sm font-semibold text-slate-400">Recruiter Console</h2>
-          </div>
+          <div className="hidden md:block" />
 
           {/* Quick Controls */}
           <div className="flex items-center gap-4">

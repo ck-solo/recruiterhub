@@ -12,14 +12,12 @@ function Navbar({ darkMode, onThemeToggle, onLogout, onMenuToggle }) {
         >
           <FiMenu size={18} />
         </button>
-        <span className="text-xl font-black bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent md:hidden">
-          Applywizz
+        <span className="text-xl font-black bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent md:hidden">
+          HireHub
         </span>
       </div>
 
-      <div className="hidden md:block">
-        <h2 className="text-sm font-semibold text-slate-400">Recruiter Console</h2>
-      </div>
+      <div className="hidden md:block" />
 
       {/* Quick Controls */}
       <div className="flex items-center gap-4">

@@ -23,7 +23,7 @@ function ResumeResult({ analysis, loading }) {
         title="Awaiting AI Match Query"
         message="Upload a PDF resume and hit matching button on the left to activate the Resume Tailoring analysis pipeline."
         icon={
-          <div className="p-4 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-500 rounded-full w-fit mx-auto">
+          <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-500 rounded-full w-fit mx-auto">
             <FiCpu size={32} />
           </div>
         }
@@ -109,12 +109,12 @@ function ResumeResult({ analysis, loading }) {
       {/* Improvement Suggestions */}
       <div className="space-y-3 pt-6 border-t border-slate-100 dark:border-slate-850">
         <h4 className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
-          <FiList className="text-indigo-500" /> Suggestions for Improvement
+          <FiList className="text-emerald-500" /> Suggestions for Improvement
         </h4>
         <ol className="space-y-3">
           {analysis.suggestions.map((sug, idx) => (
             <li key={idx} className="flex gap-3 text-xs text-slate-600 dark:text-slate-405 leading-relaxed">
-              <span className="w-5 h-5 bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-full font-bold flex items-center justify-center shrink-0">
+              <span className="w-5 h-5 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-full font-bold flex items-center justify-center shrink-0">
                 {idx + 1}
               </span>
               <span>{sug}</span>
