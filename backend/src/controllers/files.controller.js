@@ -1,4 +1,4 @@
-import { importJobsFromBuffer } from "../services/import.service.js";
+import { importJobsFromBuffer, deleteImportedJobs } from "../services/import.service.js";
 import resumeService from "../services/resume.service.js";
 import { PDFParse } from "pdf-parse";
 import { XMLParser } from "fast-xml-parser";
@@ -87,6 +87,17 @@ class FileController {
 
         const data = await resumeService.tailorResume(resumeText, jobId);
         res.success(200, "Resume tailored successfully.", data);
+    });
+
+    deleteImportedJobs = asyncHandler(async (req, res) => {
+        const { filename } = req.params;
+
+        if (!filename) {
+            throw new AppError(400, "Filename parameter is required.");
+        }
+
+        const stats = await deleteImportedJobs(filename);
+        res.success(200, "Excel spreadsheet data deleted successfully.", stats);
     });
 
 }

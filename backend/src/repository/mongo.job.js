@@ -214,6 +214,25 @@ class MongoJobRepository {
 
     return { employmentTypeDistribution, topCompanies, salaryRanges, skillsFreq, recentJobs };
   }
+
+  async findJobsBySource(source) {
+    return await Job.find({ source }).lean().exec();
+  }
+
+  async deleteJobsByIds(ids) {
+    return await Job.deleteMany({ _id: { $in: ids } }).exec();
+  }
+
+  async findDuplicatesByGroupId(duplicateGroupId) {
+    return await Job.find({ duplicateGroupId }).lean().exec();
+  }
+
+  async updateJobsDuplicateGroup(ids, duplicateGroupId) {
+    return await Job.updateMany(
+      { _id: { $in: ids } },
+      { duplicateGroupId }
+    ).exec();
+  }
 }
 
 export default new MongoJobRepository();

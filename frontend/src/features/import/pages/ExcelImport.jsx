@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useImportJobsMutation } from "../api/import.api.js";
+import { useImportJobsMutation, useDeleteImportedJobsMutation } from "../api/import.api.js";
 import { toast } from "react-hot-toast";
 import { FiDatabase, FiTrash2 } from "react-icons/fi";
 import UploadZone from "../components/UploadZone.jsx";
@@ -9,6 +9,7 @@ import PageHeader from "../../../shared/components/PageHeader.jsx";
 function ExcelImport() {
   const [file, setFile] = useState(null);
   const [importJobs, { isLoading }] = useImportJobsMutation();
+  const [deleteImportedJobs, { isLoading: isDeleting }] = useDeleteImportedJobsMutation();
   const [summary, setSummary] = useState(null);
   const [history, setHistory] = useState(() => {
     const saved = localStorage.getItem("import_history");
@@ -61,11 +62,18 @@ function ExcelImport() {
     }
   };
 
-  const handleDeleteHistory = (recordId) => {
-    const updatedHistory = history.filter(item => item.id !== recordId);
-    setHistory(updatedHistory);
-    localStorage.setItem("import_history", JSON.stringify(updatedHistory));
-    toast.success("Import history record deleted.");
+  const handleDeleteHistory = async (recordId, fileName) => {
+    try {
+      await deleteImportedJobs(fileName).unwrap();
+      const updatedHistory = history.filter(item => item.id !== recordId);
+      setHistory(updatedHistory);
+      localStorage.setItem("import_history", JSON.stringify(updatedHistory));
+      setSummary(null); // Clear local UI import summary
+      toast.success("Import history record and associated database entries deleted successfully.");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.message || "Failed to delete imported jobs from database.");
+    }
   };
 
   return (
@@ -126,8 +134,9 @@ function ExcelImport() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => handleDeleteHistory(item.id)}
-                      className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-rose-500 rounded-xl transition shrink-0"
+                      onClick={() => handleDeleteHistory(item.id, item.fileName)}
+                      disabled={isDeleting}
+                      className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-rose-500 rounded-xl transition shrink-0 disabled:opacity-50"
                       title="Delete from history"
                     >
                       <FiTrash2 size={16} />

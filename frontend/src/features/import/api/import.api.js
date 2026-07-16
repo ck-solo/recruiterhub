@@ -10,8 +10,15 @@ export const importApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["JobsList", "JobsStats", "DuplicatesList"],
     }),
+    deleteImportedJobs: builder.mutation({
+      query: (filename) => ({
+        url: `/jobs/import/${encodeURIComponent(filename)}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["JobsList", "JobsStats", "DuplicatesList", "JobDetails"],
+    }),
   }),
   overrideExisting: true,
 });
 
-export const { useImportJobsMutation } = importApi;
+export const { useImportJobsMutation, useDeleteImportedJobsMutation } = importApi;

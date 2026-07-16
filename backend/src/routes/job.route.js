@@ -13,6 +13,7 @@ router.use(userAuth);
 
 // Jobs CRUD & Import
 router.post("/jobs/import", upload.single("file"), filesController.importJobs);
+router.delete("/jobs/import/:filename", filesController.deleteImportedJobs);
 router.get("/jobs", jobController.getJobs);
 router.get("/jobs/:id", jobController.getJobById);
 

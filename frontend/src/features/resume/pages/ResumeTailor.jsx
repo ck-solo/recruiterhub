@@ -29,6 +29,17 @@ function ResumeTailor() {
     }
   }, [queryJobId]);
 
+  // Reset selected job and tailor result if the selected job is no longer available (e.g. deleted)
+  useEffect(() => {
+    if (!jobsLoading && selectedJobId) {
+      const jobStillExists = jobsList.some((job) => job._id === selectedJobId);
+      if (!jobStillExists) {
+        setSelectedJobId("");
+        setTailorResult(null);
+      }
+    }
+  }, [jobsList, jobsLoading, selectedJobId]);
+
   useEffect(() => {
     if (!isTailoring) return;
 

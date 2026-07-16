@@ -30,6 +30,9 @@ export async function importJobsFromBuffer(fileBuffer, originalName) {
         try {
             // 1. Data Normalization
             const normalized = normalizeJobRow(rawRow);
+            if (originalName) {
+                normalized.source = originalName;
+            }
 
             // 2. Duplicate Detection
             // Query candidates under the same company from the DB
@@ -91,4 +94,62 @@ export async function importJobsFromBuffer(fileBuffer, originalName) {
 
     console.log(`Import complete: ${JSON.stringify(summary)}`);
     return summary;
+}
+
+/**
+ * Deletes all jobs imported from a specific filename and cleans up duplicate groups.
+ */
+export async function deleteImportedJobs(filename) {
+    console.log(`Starting deletion of jobs imported from file: ${filename}`);
+
+    // 1. Find all jobs matching the source filename
+    const jobsToDelete = await MongoJobRepository.findJobsBySource(filename);
+    const idsToDelete = jobsToDelete.map(j => j._id);
+
+    if (idsToDelete.length === 0) {
+        console.log(`No jobs found matching source: ${filename}`);
+        return { deletedCount: 0, promotedCount: 0 };
+    }
+
+    // 2. Filter canonical jobs being deleted (non-duplicates)
+    const canonicalIdsDeleted = jobsToDelete
+        .filter(j => !j.isDuplicate)
+        .map(j => j._id);
+
+    // 3. Delete jobs from database
+    const deleteResult = await MongoJobRepository.deleteJobsByIds(idsToDelete);
+
+    // 4. Resolve remaining duplicate jobs that referenced the deleted canonical ones
+    let promotedCount = 0;
+    for (const canonicalId of canonicalIdsDeleted) {
+        const remaining = await MongoJobRepository.findDuplicatesByGroupId(canonicalId);
+        // Exclude any remaining duplicates that were also deleted in this batch (should be none since idsToDelete is deleted, but safety first)
+        const activeRemaining = remaining.filter(r => !idsToDelete.some(id => id.toString() === r._id.toString()));
+
+        if (activeRemaining.length > 0) {
+            // Sort by creation date ascending (oldest first) to find the new canonical listing
+            const sortedRemaining = activeRemaining.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            const newCanonical = sortedRemaining[0];
+
+            // Promote oldest duplicate to canonical
+            await MongoJobRepository.updateJob(newCanonical._id, {
+                isDuplicate: false,
+                duplicateGroupId: null,
+                duplicateScore: 0
+            });
+            promotedCount++;
+
+            // Point the rest of the duplicate group to the new canonical
+            if (sortedRemaining.length > 1) {
+                const restIds = sortedRemaining.slice(1).map(r => r._id);
+                await MongoJobRepository.updateJobsDuplicateGroup(restIds, newCanonical._id);
+            }
+        }
+    }
+
+    console.log(`Deletion finished. Deleted jobs count: ${deleteResult.deletedCount}. Promoted duplicates count: ${promotedCount}`);
+    return {
+        deletedCount: deleteResult.deletedCount,
+        promotedCount
+    };
 }
