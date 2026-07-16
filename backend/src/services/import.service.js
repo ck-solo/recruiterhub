@@ -1,7 +1,8 @@
 import { parseExcelBuffer } from "../utils/xlsx.utils.js";
-import { normalizeJobRow } from "../utils/dataNormalizer.js";
+import { normalizeJobRow, cleanString, normalizeCompany } from "../utils/dataNormalizer.js";
 import { jaroWinkler, jaccardSimilarity } from "../utils/similarity.js";
 import MongoJobRepository from "../repository/mongo.job.js"
+import mongoose from "mongoose";
 
 
 /**
@@ -22,8 +23,33 @@ export async function importJobsFromBuffer(fileBuffer, originalName) {
         duplicatesFound: 0,
     };
 
+    // Pre-extract all companies for batch pre-fetching
+    const uniqueCompanies = Array.from(new Set(rawRows.map(row => {
+        try {
+            const company = cleanString(row.company || row.companyName || row.Company);
+            return company ? normalizeCompany(company) : null;
+        } catch (e) {
+            return null;
+        }
+    }).filter(Boolean)));
+
+    // Fetch all candidates for these companies in a single query
+    const dbCandidatesList = await MongoJobRepository.findCanonicalCandidatesByCompanies(uniqueCompanies);
+
+    // Group candidates by company
+    const dbCandidatesByCompany = {};
+    for (const candidate of dbCandidatesList) {
+        const co = candidate.companyNormalized;
+        if (!dbCandidatesByCompany[co]) {
+            dbCandidatesByCompany[co] = [];
+        }
+        dbCandidatesByCompany[co].push(candidate);
+    }
+
     // Cache to check intra-batch unique jobs quickly
     const batchCanonicalCache = {};
+    const jobsToInsert = [];
+    const BATCH_SIZE = 2000;
 
     for (let index = 0; index < rawRows.length; index++) {
         const rawRow = rawRows[index];
@@ -34,12 +60,21 @@ export async function importJobsFromBuffer(fileBuffer, originalName) {
                 normalized.source = originalName;
             }
 
+            // Pre-generate ObjectID in app space
+            normalized._id = new mongoose.Types.ObjectId();
+            normalized.isDuplicate = false;
+            normalized.duplicateGroupId = null;
+            normalized.duplicateScore = 0;
+
+            // Remember the cache key which is the punctuation-removed companyNormalized
+            const cacheKey = normalized.companyNormalized;
+
             // 2. Duplicate Detection
-            // Query candidates under the same company from the DB
-            const dbCandidates = await MongoJobRepository.findCanonicalCandidatesByCompany(normalized.companyNormalized);
+            // Get pre-fetched candidates under the same company
+            const dbCandidates = dbCandidatesByCompany[cacheKey] || [];
 
             // Also get candidates from current batch cache
-            const cacheCandidates = batchCanonicalCache[normalized.companyNormalized] || [];
+            const cacheCandidates = batchCanonicalCache[cacheKey] || [];
             const allCandidates = [...dbCandidates, ...cacheCandidates];
 
             let bestMatch = null;
@@ -74,22 +109,46 @@ export async function importJobsFromBuffer(fileBuffer, originalName) {
                 summary.duplicatesFound++;
             }
 
-            // Save row to database immediately so it is available for subsequent rows
-            const saved = await MongoJobRepository.createJob(normalized);
+            // Emulate Mongoose pre-save hook normalization before saving & caching
+            normalized.titleNormalized = normalized.title?.trim().toLowerCase();
+            normalized.companyNormalized = normalized.company?.trim().toLowerCase();
+            normalized.locationNormalized = normalized.location?.trim().toLowerCase();
+            if (Array.isArray(normalized.skills)) {
+                normalized.skillsNormalized = normalized.skills
+                    .map(skill => (typeof skill === "string" ? skill.trim().toLowerCase() : ""))
+                    .filter(Boolean);
+            }
+
+            // Buffer the job for batch insert
+            jobsToInsert.push(normalized);
 
             // If it's a new canonical job, cache it for the remainder of this batch
             if (!normalized.isDuplicate) {
-                if (!batchCanonicalCache[normalized.companyNormalized]) {
-                    batchCanonicalCache[normalized.companyNormalized] = [];
+                if (!batchCanonicalCache[cacheKey]) {
+                    batchCanonicalCache[cacheKey] = [];
                 }
-                batchCanonicalCache[normalized.companyNormalized].push(saved);
+                batchCanonicalCache[cacheKey].push(normalized);
             }
 
             summary.imported++;
+
+            // Flush buffer if batch size limit is met
+            if (jobsToInsert.length >= BATCH_SIZE) {
+                try {
+                    await MongoJobRepository.insertManyJobs(jobsToInsert, { ordered: false });
+                } finally {
+                    jobsToInsert.length = 0; // Empty the array
+                }
+            }
         } catch (error) {
             console.log(`Import failed at row ${index + 2}: ${error.message}`);
             summary.failed++;
         }
+    }
+
+    // Flush any remaining buffered jobs
+    if (jobsToInsert.length > 0) {
+        await MongoJobRepository.insertManyJobs(jobsToInsert, { ordered: false });
     }
 
     console.log(`Import complete: ${JSON.stringify(summary)}`);

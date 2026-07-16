@@ -72,6 +72,11 @@ class MongoJobRepository {
     return await Job.bulkWrite(operations);
   }
 
+  async insertManyJobs(jobs, options = {}) {
+    if (!jobs?.length) return [];
+    return await Job.insertMany(jobs, options);
+  }
+
   async findJobs({ search, company, location, employmentType, remote, experience, salaryMin, salaryMax, isDuplicate, page = 1, limit = 10, sortBy = "postedDate", sortOrder = "desc" }) {
     
     // Pagination & Sorting Validation using Constants
@@ -154,6 +159,17 @@ class MongoJobRepository {
 
   async findCanonicalCandidatesByCompany(companyNormalized) {
     return await Job.find({ companyNormalized, isDuplicate: false }).lean().exec();
+  }
+
+  async findCanonicalCandidatesByCompanies(companies) {
+    if (!companies?.length) return [];
+    return await Job.find({
+      companyNormalized: { $in: companies },
+      isDuplicate: false,
+    })
+      .select("_id titleNormalized description skillsNormalized companyNormalized")
+      .lean()
+      .exec();
   }
 
   async getDashboardCounts() {
